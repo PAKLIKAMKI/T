@@ -21,10 +21,14 @@ def choose_number():
         else:
             return number
 
-# Function to send data to the given URL
-def send_data(url, data):
+# Function to send data to the given URL with an API key
+def send_data(url, data, api_key):
+    headers = {
+        'Authorization': f'Bearer {api_key}',
+        'Content-Type': 'application/json'
+    }
     try:
-        response = requests.post(url, json=data)
+        response = requests.post(url, json=data, headers=headers)
         response.raise_for_status()  # Will raise an HTTPError for bad responses
         return response.json()
     except requests.exceptions.RequestException as e:
@@ -33,6 +37,7 @@ def send_data(url, data):
 
 # Example URL - replace with the actual API endpoint if different
 url = "https://lcg.bet/#/pages/venueGame/index"
+api_key = "1LTHvAkbazj6y7B2AWUe-0"
 
 # Generate the values
 multiplier = choose_multiplier()
@@ -45,7 +50,7 @@ data = {
 }
 
 # Send the data
-response = send_data(url, data)
+response = send_data(url, data, api_key)
 
 # Output the result
 print("Chosen Multiplier:", multiplier)
