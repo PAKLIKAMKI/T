@@ -1,7 +1,7 @@
 import numpy as np
 import requests
 
-# Function to choose a multiplier between 1.1 and 10 with lower probability for numbers over 5
+# Function to choose a multiplier between 1.1 and 10 with a lower probability for numbers over 5
 def choose_multiplier():
     while True:
         multiplier = np.random.uniform(1.1, 10)
@@ -11,7 +11,7 @@ def choose_multiplier():
         else:
             return multiplier
 
-# Function to choose a number between 1 and 10 with lower probability for numbers over 5
+# Function to choose a number between 1 and 10 with a lower probability for numbers over 5
 def choose_number():
     while True:
         number = np.random.randint(1, 11)
@@ -21,7 +21,7 @@ def choose_number():
         else:
             return number
 
-# Function to simulate a post request to LCG.BET
+# Function to send data to the given URL
 def send_data(url, data):
     try:
         response = requests.post(url, json=data)
